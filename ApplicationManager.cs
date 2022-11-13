@@ -21,6 +21,7 @@ public class ApplicationManager
     private NavigationHelper navigation;
     private LoginHelper auth;
     private ShoutHelper shout;
+    private PlayListHelper playlist;
 
     public ApplicationManager()
     {
@@ -28,6 +29,7 @@ public class ApplicationManager
         js = (IJavaScriptExecutor)driver;
         vars = new Dictionary<string, object>();
         shout = new ShoutHelper(this);
+        playlist = new PlayListHelper(this);
         auth = new LoginHelper(this);
         navigation = new NavigationHelper(this);
     }
@@ -97,6 +99,14 @@ public class ApplicationManager
         get
         {
             return shout;
+        }
+    }
+
+    public PlayListHelper Playlist
+    {
+        get
+        {
+            return playlist;
         }
     }
 
