@@ -38,6 +38,6 @@ public class ShoutHelper : HelperBase
     public ShoutData SelectLastShoutData()
     {
         string shoutText = driver.FindElement(By.ClassName("shout-body")).FindElement(By.TagName("p")).Text;
-        return new ShoutData(shoutText) {ShoutText = shoutText};
+        return new ShoutData() {ShoutText = shoutText};
     }
 }

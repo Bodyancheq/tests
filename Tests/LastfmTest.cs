@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Xml.Serialization;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -16,12 +17,17 @@ using TestProject1;
 [TestFixture]
 public class LastfmTest : TestBase
 {
+  public static IEnumerable<ShoutData> ShoutDataFromXmlFile()
+  {
+    return (List<ShoutData>) new XmlSerializer(typeof(List<ShoutData>)).Deserialize(new StreamReader(@"data.xml"));
+  }
+
   private AccountData user = new AccountData("bodyancheq", "FGH-9NA-eWj-XXg");
-  private ShoutData shout = new ShoutData("Yakui the Maid is cool, just like Blink-182");
+  // private ShoutData shout = new ShoutData("Yakui the Maid is cool, just like Blink-182");
   private PlayListData data = new PlayListData("Yooo amogus");
   
-  [Test]
-  public void lastfmAddShout()
+  [Test, TestCaseSource("ShoutDataFromXmlFile")]
+  public void lastfmAddShout(ShoutData shout)
   {
     app.Navigation.OpenHomePage();
     app.Auth.Login(user);

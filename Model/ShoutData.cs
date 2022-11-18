@@ -3,10 +3,13 @@
 
 public class ShoutData
 {
-    public ShoutData(string shout)
-    {
-        ShoutText = shout;
-    }
+    
+    public string ShoutText;
+    
+    // public ShoutData(string shout)
+    // {
+    //     ShoutText = shout;
+    // }
 
-    public string ShoutText { get; set; }
+    // public string ShoutText { get; set; }
 }
